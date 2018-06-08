@@ -1,0 +1,110 @@
+
+
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       
+
+        #mapChemnitz,
+        #mapBerlin ,
+        #mapMunich,
+        #mapFrankfurt,
+        #mapHamburg,
+        #mapDresden{
+            height: 600px;
+            width: 100%;
+            position: relative;
+
+        }
+ .nav_font{
+  font-size: 20px;
+ }
+      
+
+
+   @media (max-width: 768px){
+      #textInfo {
+        padding : 10px 10px 10px 10px;
+        height: 100%;
+        width: 100%;
+        }
+
+      #curve_chart{
+
+           width: 100%;
+           height: 100%;
+           
+        }
+        .star-primary{
+          padding: 30px;
+          font-size: 13px;
+
+        }
+
+        #snapshot{
+
+          width: 50%;
+          
+        }
+        .snapshotdiv{
+          text-align: center;
+
+        }
+
+       
+   }
+
+  @media (min-width: 768px){
+        #snapshot{
+          width: 50%;
+          margin-left: 25%;
+        }
+         #textInfo {
+            padding : 50px 10px 50px 10px;
+            float: left;
+            }
+            
+            #curve_chart{
+
+           padding: 40px 10px 40px 10px;
+            float: left;
+            width: 800px;
+            min-height: 300px;
+
+        }
+    }
+
+    header .container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+header .intro-text .name {
+    font-size: 3em;
+}
+    #curve_chart{
+
+           padding: 40px 10px 40px 10px;
+            float: left;
+            min-height: 300px;
+
+        }
+        .star-primary{
+         padding: 20px 20px 20px 20px;
+         font-size: 18px;
+
+      }
+
+
+
+   }
+
+   pre{
+    box-shadow: 0px 0px 10px #888888;
+  
+   }
+
+
+
+
+
+

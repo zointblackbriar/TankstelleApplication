@@ -1,0 +1,329 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tankerkoenig App</title>
+
+</head>
+<body>
+
+<style>
+    .button {
+        padding: 15px 25px;
+        font-size: 24px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #fff;
+        background-color: darkslateblue;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
+
+    .button:hover{background-color: #3e8e41}
+
+    .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    #map {
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom:auto;
+        height: 400px;
+        width: 70%;
+    }
+
+</style>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tankerkoenig Deutschland</a>
+        </div>
+        &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">Team</a>
+                </li>
+            </ul>
+        </div>
+        &lt;!&ndash; /.navbar-collapse &ndash;&gt;
+    </div>
+    &lt;!&ndash; /.container &ndash;&gt;
+</nav>
+<header id="myCarousel" class="carousel slide">
+    &lt;!&ndash; Indicators &ndash;&gt;
+    &lt;!&ndash;<ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>&ndash;&gt;
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="item">
+                <div class="fill" >
+                    <br>
+                    <p align="middle"><div id="map"></div></p>
+                    <p align="middle"><button class="button" >Make Snapshot</button></p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill">
+                    <h2>Debug Window</h2>
+                    <p id="myLog"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+&lt;!&ndash; Controls &ndash;&gt;
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+</a>
+
+<script>
+    var lat = 52.521;
+    var lng = 13.438;
+    var locations = [
+        /*
+         ['Location 1', -33.890542, 151.274856, 4],
+         ['Location 2', -33.923036, 151.259052, 5],
+         ['Location 3', -34.028249, 151.157507, 3],
+         ['Location 4', -33.80010128657071, 151.28747820854187, 2],
+         */
+        ['Location 1', 53.521, 13.456, 1],
+        ['Location 2', 53.232, 13.454, 1]
+    ];
+
+
+/*
+    window.console = {
+        log: function(str)
+        {
+            var node = document.createElement("div");
+            node.appendChild(document.createTextNode(str));
+            document.getElementById("myLog").appendChild(node);
+        }
+    }
+*/
+
+    function fetchTankstelleData(latitudeParam, longitudeParam, radiusParam)
+    {
+        console.log("fetchTankstelleData");
+        var oReq = new XMLHttpRequest();
+        var paramCombined = "/lat=" + latitudeParam + "&" + "lng=" + longitudeParam + "&" + "rad=" + radiusParam;
+        oReq.open("GET", "/StationInformation" + paramCombined, true);
+        // oReq.open("GET", URLforAPIListTankstelle+'?'+'lat=' + latitudeParam + '&lng=' + longitudeParam + '&rad=' + radiusParam, true);
+        oReq.onreadystatechange = function() {
+            if(oReq.readyState == 4 && oReq.status == 200) {
+                //document.getElementById("content").innerHTML = oReq.responseText;
+                var data = oReq.responseText;
+                console.log(data);
+            }
+        };
+        oReq.send(null);
+    }
+
+    function openingHours(stationID)
+    {
+        console.log("openingHours");
+        var oReq = new XMLHttpRequest();
+        oReq.open("GET", "/OpeningHours/" + stationID, true);
+        oReq.onreadystatechange = function() {
+            if(oReq.readyState == 4 && oReq.status == 200) {
+                //document.getElementById("content").innerHTML = oReq.responseText;
+                var data = oReq.responseText;
+                console.log(data);
+            }
+        };
+        oReq.send(null);
+
+    }
+
+    function makeSnapshot(latitudeParam, longitudeParam, radiusParam)
+    {
+        console.log("makeSnapshot");
+        var oReq = new XMLHttpRequest();
+        var paramCombined = "/lat=" + latitudeParam + "&" + "lng=" + longitudeParam + "&" + "rad=" + radiusParam;
+        oReq.open("POST", "/makeSnapshot" + paramCombined, true);
+        oReq.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        oReq.onreadystatechange = function() {//Call a function when the state changes.
+            if(oReq.readyState == 4 && oReq.status == 200)
+            {
+                //console.log(oReq.response);
+            }
+        };
+        oReq.send();
+    }
+
+    function getPriceTrend()
+    {
+
+    }
+
+    fetchTankstelleData(52.521, 13.438, 1.5);
+    openingHours("474e5046-deaf-4f9b-9a32-9797b778f047");
+    //makeSnapshot(50.8278, 12.9214, 5);
+
+    function createGraph()
+    {
+        console.log("Hello World");
+        return 0;
+    }
+
+    function initMap()
+    {
+        //var positions = {lat: lat, lng:lng};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: new google.maps.LatLng(52.521, 13.438)
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+        for(var i = 0; i < locations.length; i++)
+        {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function(marker, i){
+                return function()
+                {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                    createGraph();
+                }
+            })(marker, i));
+        }
+    }
+</script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0R7Y4rGrmjD5cMrr3QASzqPGomiLL89c&callback=initMap" async defer></script>
+
+</body>
+</html>-->
+
+<!-- Above-mentioned code will be deleted after handling REST request -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tankerkoenig App</title>
+
+</head>
+<body>
+<script>
+    function markerCoords(markerobject) {
+        console.log("FRONTEND::markerCoords");
+        google.maps.event.addListener(markerobject, 'dragend', function(evt) {
+            infoWindow.setOptions ({
+                content: '<p>Marker dropped: Current lat: ' + evt.latLng.lat().toFixed(3) + 'Current Lng:' + evt.latLng.lng().toFixed(3) + '</p>'
+            });
+            infoWinddow.open(map, markerobject);
+        });
+
+        google.maps.event.addListener(markerobject, 'drag', function(evt) {
+            console.log("marker is being dragged");
+        })
+    }
+
+    function makeSnapshot()
+    {
+        console.log("FRONTEND::makeSnapshot");
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+
+        if(dd < 10)
+        {
+            dd = '0' + dd;
+        }
+
+        if(mm < 10)
+        {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+        console.log(JSON.stringify(today));
+        var oReq = new XMLHttpRequest();
+        oReq.open("POST", "/test/makeSnapshot", true);
+        //oReq.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        oReq.setRequestHeader("Content-type", "application/json");
+        oReq.onreadystatechange = function() {//Call a function when the state changes.
+            if(oReq.readyState == 4 && oReq.status == 200)
+            {
+                console.log(oReq.response);
+            }
+        };
+        oReq.send(JSON.stringify({
+            "stations": [
+                {
+                    "id":"60c0eefa-d2a8-4f5c-82cc-b5244ecae955",
+                    "e5": false,
+                    "e10": false,
+                    "diesel": 1.189,
+                    "date" : today
+                },
+                {
+                    "id": "446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b",
+                    "e5": 1.409,
+                    "e10": 1.389,
+                    "diesel": 1.129,
+                    "date" : today
+
+                },
+                {
+                    "id":"4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8",
+                    "e5": 1.409,
+                    "e10": 1.77,
+                    "diesel": 1.334,
+                    "date" : today
+                 }
+              ]
+            }
+        ));
+        //oReq.send(JSON.stringify({"hello": "world"}));
+    }
+
+    function getPriceTrends(ID)
+    {
+        console.log("FRONTEND::getPriceTrends");
+        var oReq = new XMLHttpRequest();
+        oReq.open("GET", "/getPriceTrend/" + ID, true);
+        oReq.onreadystatechange = function() {
+            if(oReq.readyState == 4 && oReq.status == 200) {
+                console.log(oReq.response);
+            }
+        };
+        oReq.send(null);
+    }
+
+    makeSnapshot();
+    //getPriceTrends("446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b");
+
+</script>
+</body>
+<p>Welcome to the Test Page</p>
+<html>
