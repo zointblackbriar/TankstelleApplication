@@ -18,13 +18,20 @@ How do I set up?
 	
 Brief Overview on the Project
 
-	This is a project that uses an API the so-called tankerkönig API to provide gasoline prices regarding oil station to the end user and drivers.
+	This is a project that uses an API the so-called tankerkönig API to provide gas prices regarding oil station to the end user and drivers.
 	
 ![Web App](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Web_App_Mouse_Circle.PNG)
-![Database Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Preview.PNG)
-![Database Plan](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Plan.PNG)
-![Android Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Android_Sample_Screen.PNG)
 	
+	As you can see in the Figure above, a user can draw a circle without giving a location data to the system. Hence, the Tankstelle application can 
+	show result in the perimeter. Due to the limitation over the calls of API, a user should be aware of the usage of the limitation of circles. Each
+	circle sends a unique REST call to fetch data from the Tankstelle API by means of Node.js back-end application.
+![Database Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Preview.PNG)
+	We have used relational database with a primary key parameter which named ID. Each ID has a unique E5, E10, DIESEL, and DATE column in order to
+	calculate mean prices and do some data analysis. This database has been located in an Unix-based operating system.
+![Database Plan](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Plan.PNG)
+	We have simplified the database design so that the REST call of application has been became simple.
+![Android Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Android_Sample_Screen.PNG)
+	As you can see in the bottom Figure, the Android application can show the result in a viewer with Google Maps API.
 
 Contribution guidelines
 
