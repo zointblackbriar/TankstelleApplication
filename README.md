@@ -27,13 +27,16 @@ Brief Overview on the Project
 	circle sends a unique REST call to fetch data from the Tankstelle API by means of Node.js back-end application.
 	
 ![Database Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Preview.PNG)
+
 	We have used relational database with a primary key parameter which named ID. Each ID has a unique E5, E10, DIESEL, and DATE column in order to
 	calculate mean prices and do some data analysis. This database has been located in an Unix-based operating system.
 	
 ![Database Plan](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Plan.PNG)
+
 	We have simplified the database design so that the REST call of application has been became simple.
 	
 ![Android Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Android_Sample_Screen.PNG)
+
 	As you can see in the bottom Figure, the Android application can show the result in a viewer with Google Maps API.
 
 Contribution guidelines
