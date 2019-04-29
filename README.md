@@ -15,6 +15,16 @@ How do I set up?
     Database configuration You need to install mysql database in your local or remote path. After creating mysql server, please create a user with the following command named tankkoenig mysql> "CREATE USER 'tankkoenig'@'localhost' IDENTIFIED BY 'password'" mysql> "GRANT ALL PRIVILEGES ON . TO 'tankkoenig'@'localhost' WITH GRANT OPTION"; mysql> "CREATE USER 'tankkoenig'@'%' IDENTIFIED BY 'password'"; mysql> "GRANT ALL PRIVILEGES ON . TO 'tankkoenig'@'%' WITH GRANT OPTION;"
     How to run tests No test yet
     Deployment instructions
+	
+Brief Overview on the Project
+
+	This is a project that uses an API the so-called tankerkönig API to provide gasoline prices regarding oil station to the end user and drivers.
+	
+	![](presentation_images/Web_App_Mouse_Circle.PNG)
+	![](presentation_images/Database_Preview.PNG)
+	![](presentation_images/Database_Plan.PNG)
+	![](presentation_images/Android_Sample_Screen.PNG)
+	
 
 Contribution guidelines
 
