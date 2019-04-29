@@ -20,10 +20,10 @@ Brief Overview on the Project
 
 	This is a project that uses an API the so-called tankerkönig API to provide gasoline prices regarding oil station to the end user and drivers.
 	
-	![Web App](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Web_App_Mouse_Circle.png)
-	![Database Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Preview.png)
-	![Database Plan](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Plan.png)
-	![Android Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Android_Sample_Screen.png)
+![Web App](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Web_App_Mouse_Circle.PNG)
+![Database Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Preview.PNG)
+![Database Plan](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Database_Plan.PNG)
+![Android Preview](https://github.com/zointblackbriar/TankstelleApplication/blob/master/presentation_images/Android_Sample_Screen.PNG)
 	
 
 Contribution guidelines
